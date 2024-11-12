@@ -15,6 +15,10 @@
                 <li><a href="/stuff_list">Stuff list</a></li>
                 <li><a href="/couriers">Couriers</a></li>
                 <li><a href="/mails">Mails</a></li>
+                <li><a href="/parcels">Parcels</a></li>
+                <li><a href="/archive">Archive</a></li>
+
+
                 {% if user.is_authenticated %}
                     <form action="{% url 'logout' %}" method="POST">
                         {% csrf_token %}

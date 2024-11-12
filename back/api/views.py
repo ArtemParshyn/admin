@@ -1,5 +1,7 @@
 import json
 from django.shortcuts import get_object_or_404
+import requests
+
 from django.contrib import messages
 from django.contrib.auth import authenticate, login, get_user_model
 from django.contrib.auth.decorators import login_required
@@ -84,3 +86,23 @@ def login_view(request):
             print("Authentication error: username or password are wrong.")
 
     return render(request, 'login.html')
+
+
+def parcels(request):
+    response = requests.get("http://127.0.0.1:1000/parcels")
+
+    print(response)
+    resp = response.json()
+    for i in resp["items"]:
+        print(i)
+    return render(request, 'parcel.html', context={'parcels': resp["items"]})
+
+
+def archive(request):
+    response = requests.get("http://127.0.0.1:1000/archive")
+
+    print(response)
+    resp = response.json()
+    for i in resp["items"]:
+        print(i)
+    return render(request, 'archive.html', context={'archive': resp["items"]})

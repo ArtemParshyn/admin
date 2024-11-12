@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+
+{% block title %}Parcels{% endblock %}
+
+{% block content %}
+{% load static %}
+<link rel="stylesheet" href="{% static 'list.css' %}">
+<script src="{% static 'parcels_approve.js' %}"></script>
+
+
+<h1>Parcels</h1>
+<table class="staff-table">
+    <thead>
+        <tr>
+            <th>Code</th>
+            <th>Name</th>
+            <th>Address</th>
+            <th>Status</th>
+
+        </tr>
+    </thead>
+    <tbody id="staff-table-body">
+        {% for i in parcels %}
+        <tr>
+                <td>{{i.name_full}}</td>
+                <td>{{i.code}}</td>
+                <td>{{i.address}}</td>
+                <td><button value = {{i.id}} id = "open-form-button">Approve</button></td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}
