@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+
+{% block title %}Stuff list{% endblock %}
+
+{% block content %}
+{% load static %}
+<link rel="stylesheet" href="{% static 'list.css' %}">
+<script src="{% static 'couriers.js' %}"></script>
+
+<h1>Couriers</h1>
+<table class="staff-table">
+    <thead>
+        <tr>
+            <th>Address</th>
+            <th>Name</th>
+            <th>Number</th>
+        </tr>
+    </thead>
+    <tbody id="staff-table-body">
+        {% for i in items %}
+        <tr>
+                <td>{{i.name}}</td>
+                <td>{{i.phone_number}}</td>
+                <td>{{i.address}}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}

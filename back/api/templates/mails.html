@@ -1,0 +1,50 @@
+{% extends "base.html" %}
+
+{% block title %}Stuff list{% endblock %}
+
+{% block content %}
+{% load static %}
+
+<h1>Mails</h1>
+
+<!-- Кнопка для открытия формы создания вопроса -->
+<button id="open-form-button">Create ticket</button>
+<link rel="stylesheet" href="{% static 'list.css' %}">
+<script src="{% static 'mails.js' %}"></script>
+
+<!-- Форма создания вопроса -->
+<div id="question-form" style="display: none;">
+    <h2>Create ticket</h2>
+    <form id="new-question-form">
+        {% csrf_token %}
+        <label for="question">Question:</label>
+        <textarea id="question" name="question" required></textarea>
+        <button type="submit" id = "submit-button">Send</button>
+        <button type="button" id="cancel-button">Cancel</button>
+    </form>
+</div>
+
+<table class="staff-table">
+    <thead>
+        <tr>
+            <th>Ticket Id</th>
+            <th>Question</th>
+            <th>Answer</th>
+        </tr>
+    </thead>
+    <tbody id="staff-table-body">
+        {% for i in items %}
+            <tr>
+                <td>{{ i.ticket_id }}</td>
+                <td>{{ i.question }}</td>
+                {% if i.is_answer %}
+                    <td>{{ i.answer }}</td>
+                {% else %}
+                    <td>Waiting for response</td>
+                {% endif %}
+            </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+{% endblock %}
